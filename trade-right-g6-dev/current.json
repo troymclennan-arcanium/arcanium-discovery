@@ -1,0 +1,10 @@
+{
+  "catalog": "releases/rbfa1c696e25b20a63d43c6e4/catalog.enc",
+  "catalog_sha256": "266af162a8f6115373d6a875a0c5baeb5df0fca9b08bf5a83cc0e13add8d587e",
+  "encrypted_objects": 63,
+  "format": "arcanium-pages-ciphertext-v1",
+  "iterations": 600000,
+  "publication_state": "CANDIDATE_NOT_APPROVED",
+  "release": "rbfa1c696e25b20a63d43c6e4",
+  "source_count": 62
+}
