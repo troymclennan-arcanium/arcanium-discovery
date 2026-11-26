@@ -526,21 +526,7 @@ o=Object.assign({},o,{body:JSON.stringify(j)})}}}catch(e){}return of.call(this,u
 </div>
 </div>
 
-<form id="fb" class="card so-form rv" novalidate>
-<div class="h4">Your approval</div>
-<div class="lean">
-<label><input type="radio" name="verdict" value="Approve"><span>Approve and go ahead</span></label>
-<label><input type="radio" name="verdict" value="Approve with changes"><span>Approve with a few changes</span></label>
-<label><input type="radio" name="verdict" value="Rethink"><span>Not yet</span></label>
-</div>
-<div class="two">
-<label>Your name<input name="name" autocomplete="name"></label>
-<label>Your role<input name="role" placeholder="e.g. Owner, Director"></label>
-</div>
-<label>Anything to carry into the build (optional)<textarea name="overall_notes" rows="3" placeholder="Anything to keep in mind as we build it."></textarea></label>
-<button type="submit" class="btn send">Confirm approval</button>
-<div class="status" role="status" aria-live="polite"></div>
-</form>
+<div class="card" id="so-closed" style="max-width:760px;margin:0 auto;text-align:center;padding:34px 28px"><div class="lbl" style="justify-content:center">Closed</div><h3 class="h4" style="margin:6px 0 10px;font-size:22px">This round has been approved.</h3><p style="margin:0;color:var(--n-ink7)">The concept was approved and we have moved to the next stage. This page is now a record, so there is nothing further to send here.</p></div>
 </div>
 </section>
 <section id="next" class="neutral"><div class="wrap block"><div class="lbl rv">Next steps</div><h2 class="h2 rv">Where we go from here.</h2><div class="grid4"><div class="card step rv"><div class="sn">1</div><div class="h4">We talk it through</div><p>We go through what you love, and anything that still does not feel like you.</p></div><div class="card step rv"><div class="sn">2</div><div class="h4">We finish the logo</div><p>Your logo files, ready for print, signs and screens.</p></div><div class="card step rv"><div class="sn">3</div><div class="h4">Your brand guide</div><p>Colours, lettering, logo rules and how to use them, in one place.</p></div><div class="card step rv"><div class="sn">4</div><div class="h4">We bring it to life</div><p>Website, social media, signage and printed materials, rolled out with care.</p></div></div>
@@ -744,7 +730,7 @@ document.querySelectorAll('.jc-logo').forEach(b=>{const host=b.closest('.jc-hero
 })();
 
 // ---------- feedback ----------
-const form=$('#fb');form.addEventListener('submit',async e=>{e.preventDefault();const st=$('.status',form),btn=$('.send',form);const fd=new FormData(form);
+const form=$('#fb')||document.createElement('form');form.addEventListener('submit',async e=>{e.preventDefault();const st=$('.status',form),btn=$('.send',form);const fd=new FormData(form);
  const responses={};CFG.directions.forEach(n=>{responses[n]={loved:loved(n),really_loved:ALL.filter(k=>k.startsWith(n+'|')&&lvl(k)===2).map(k=>k.slice(n.length+1)),notes:state.notes[n]||''}});
  const reactions={};ALL.forEach(k=>{const v=lvl(k);if(!v)return;const i=k.indexOf('|'),d=k.slice(0,i);(reactions[d]=reactions[d]||{})[k.slice(i+1)]=v});
  const body={project:CFG.project,name:fd.get('name')||'',role:fd.get('role')||'',leaning:CFG.directions.length===1?(fd.get('verdict')?CFG.directions[0]:'Undecided'):(fd.get('leaning')||'Undecided'),verdict:fd.get('verdict')||'',overall_notes:fd.get('overall_notes')||'',responses,reactions,journey:state.journey.slice(-400)};if(VER)body.version=VER;
